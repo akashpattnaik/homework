@@ -11,7 +11,6 @@ class LinearRegression:
     def __init__(self):
         self.w = None
         self.b = None
-        pass
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """Fit function
@@ -117,7 +116,6 @@ class GradientDescentLinearRegression(LinearRegression):
                 w, b, lr
             )  # Update parameters using their gradient
 
-            print(type(w))
         self.w = w
         self.b = b
 
