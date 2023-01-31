@@ -52,8 +52,9 @@ class GradientDescentLinearRegression(LinearRegression):
             lr (float, optional): learning rate. Defaults to 0.01.
             epochs (int, optional): number of epochs for training. Defaults to 1000.
         """
+
         X_bar = np.hstack((X, np.ones((X.shape[0], 1))))
-        wb = np.zeros((X.shape[-1] + 1, 1))
+        wb = np.zeros((X.shape[-1] + 1, 1)) + 1e4
 
         for _ in range(epochs):
             # update gradient
