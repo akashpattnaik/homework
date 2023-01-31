@@ -44,7 +44,7 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
-        """Fit function
+        """Fit function, using numpy only
 
         Args:
             X (np.ndarray): targets
