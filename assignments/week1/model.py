@@ -54,7 +54,7 @@ class GradientDescentLinearRegression(LinearRegression):
         """
 
         X_bar = np.hstack((X, np.ones((X.shape[0], 1))))
-        wb = np.zeros((X.shape[-1] + 1, 1)) + 1e4
+        wb = np.zeros((X.shape[-1] + 1, 1))
 
         for _ in range(epochs):
             # update gradient
