@@ -22,9 +22,9 @@ class CONFIG:
     initial_weight_decay = 0
 
     lrs_kwargs = {
-        "max_update": 800,
+        "max_update": 1600,
         "final_lr": initial_learning_rate,
-        "warmup_steps": 100,
+        "warmup_steps": 200,
         "warmup_begin_lr": initial_learning_rate,
         "base_lr": 1e-3,
     }
