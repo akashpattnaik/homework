@@ -2,11 +2,17 @@
     "assignment_name": "RegOpt",
     "contributors": [
         {
-            "name": "Change this to your name",
-            "pennkey": "MyPennKey"
+            "name": "Akash Pattnaik",
+            "pennkey": "pattnaik"
+        },
+        {
+            "name": "Peter Galer",
+            "pennkey": "galerp"
         }
+
     ],
     "sources": [
-        "Don't forget to list your sources/attribution here!"
+        "Used Github Copilot to assist with syntax.",
+        "https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html"
     ]
 }
