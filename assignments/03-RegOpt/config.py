@@ -16,7 +16,7 @@ class CONFIG:
     This class contains all the configuration parameters for the assignment.
     """
 
-    batch_size = 96
+    batch_size = 64
     num_epochs = 2
     initial_learning_rate = 1e-4
     initial_weight_decay = 0
