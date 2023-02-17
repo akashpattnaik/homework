@@ -16,7 +16,12 @@ class CONFIG:
     initial_weight_decay = 0
 
     lrs_kwargs = {
-        "lr_lambda": lambda epoch: 0.95**epoch,
+        # "lr_lambda": lambda epoch: 0.95**epoch,
+        "max_update": 100,
+        "base_lr": 0.01,
+        "final_lr": 0,
+        "warmup_steps": 5,
+        "warmup_begin_lr": 0,
         # You can pass arguments to the learning rate scheduler
         # constructor here.
     }
