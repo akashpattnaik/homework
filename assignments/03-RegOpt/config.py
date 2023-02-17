@@ -7,7 +7,7 @@ from torchvision.transforms import (
     Normalize,
     ToTensor,
     # RandomHorizontalFlip,
-    # RandomRotation,
+    RandomRotation,
 )
 
 
@@ -17,16 +17,15 @@ class CONFIG:
     """
 
     batch_size = 64
-    num_epochs = 2
+    num_epochs = 5
     initial_learning_rate = 1e-4
     initial_weight_decay = 0
 
     lrs_kwargs = {
-        "max_update": 1600,
-        "final_lr": initial_learning_rate,
-        "warmup_steps": 200,
-        "warmup_begin_lr": initial_learning_rate,
-        "base_lr": 1e-3,
+        "max_lr": 1e-3,
+        "min_lr": 1e-5,
+        "T_0": 100,
+        "T_mult": 1.5,
     }
 
     optimizer_factory: Callable[
@@ -39,7 +38,7 @@ class CONFIG:
 
     transforms = Compose(
         [
-            # RandomRotation(10),
+            RandomRotation(10),
             # RandomHorizontalFlip(),
             ToTensor(),
             Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010]),
