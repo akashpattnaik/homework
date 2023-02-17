@@ -3,6 +3,8 @@ from typing import List
 from torch.optim.lr_scheduler import _LRScheduler
 import math
 
+DEBUG = False
+
 
 class CustomLRScheduler(_LRScheduler):
     """
@@ -14,7 +16,7 @@ class CustomLRScheduler(_LRScheduler):
         self,
         optimizer,
         max_update,
-        base_lr=0.01,
+        base_lr=0.1,
         final_lr=0,
         warmup_steps=5,
         warmup_begin_lr=0,
@@ -29,6 +31,7 @@ class CustomLRScheduler(_LRScheduler):
         Adapted from: https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html
 
         """
+        self.base_lr = optimizer.param_groups[0]["lr"]
         self.base_lr = base_lr
         self.max_update = max_update
         self.final_lr = final_lr
@@ -46,15 +49,30 @@ class CustomLRScheduler(_LRScheduler):
         # Note to students: You CANNOT change the arguments or return type of
         # this function (because it is called internally by Torch)
 
+        if DEBUG:
+            # debugging
+            if self.last_epoch == 100:
+                raise SystemExit("Stop here")
+
+            print(f"Epoch: {self.last_epoch}")
+            print(f"Base LR: {self.base_lr}")
+            print(f"Final LR: {self.final_lr}")
+            print(f"Warmup steps: {self.warmup_steps}")
+            print(f"Warmup begin LR: {self.warmup_begin_lr}")
+            print(f"Max steps: {self.max_steps}")
+
         if self.last_epoch < self.warmup_steps:
-            return [
+            warmup_lr = (
                 self.warmup_begin_lr
                 + (self.base_lr - self.warmup_begin_lr)
                 * self.last_epoch
                 / self.warmup_steps
-            ]
+            )
+            if DEBUG:
+                print(warmup_lr)
+            return [warmup_lr]
         else:
-            return [
+            cosine_lr = (
                 self.final_lr
                 + (self.base_lr - self.final_lr)
                 * (
@@ -64,7 +82,11 @@ class CustomLRScheduler(_LRScheduler):
                     )
                 )
                 / 2
-            ]
+            )
+            if DEBUG:
+                print(cosine_lr)
+            return [cosine_lr]
 
+        ### Baseline ###
         # Here's our dumb baseline implementation:
         return [i for i in self.base_lrs]

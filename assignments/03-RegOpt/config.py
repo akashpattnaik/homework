@@ -17,19 +17,16 @@ class CONFIG:
     """
 
     batch_size = 64
-    num_epochs = 2
-    initial_learning_rate = 0.001
+    num_epochs = 8
+    initial_learning_rate = 1e-4
     initial_weight_decay = 0
 
     lrs_kwargs = {
-        # "lr_lambda": lambda epoch: 0.95**epoch,
-        "max_update": 20,
-        "base_lr": 0.3,
-        "final_lr": 0.01,
-        "warmup_steps": 5,
-        "warmup_begin_lr": 0,
-        # You can pass arguments to the learning rate scheduler
-        # constructor here.
+        "max_update": 800,
+        "final_lr": initial_learning_rate,
+        "warmup_steps": 100,
+        "warmup_begin_lr": initial_learning_rate,
+        "base_lr": 1e-3,
     }
 
     optimizer_factory: Callable[
@@ -46,5 +43,6 @@ class CONFIG:
             # RandomHorizontalFlip(),
             ToTensor(),
             Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010]),
+            # Normalize(mean=[0, 0, 0], std=[1, 1, 1]),
         ]
     )
