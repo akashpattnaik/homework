@@ -2,7 +2,13 @@ from typing import Callable
 import torch
 import torch.optim
 import torch.nn as nn
-from torchvision.transforms import Compose, Normalize, ToTensor
+from torchvision.transforms import (
+    Compose,
+    Normalize,
+    ToTensor,
+    RandomHorizontalFlip,
+    RandomRotation,
+)
 
 
 class CONFIG:
@@ -17,9 +23,9 @@ class CONFIG:
 
     lrs_kwargs = {
         # "lr_lambda": lambda epoch: 0.95**epoch,
-        "max_update": 100,
-        "base_lr": 0.01,
-        "final_lr": 0,
+        "max_update": 20,
+        "base_lr": 0.3,
+        "final_lr": 0.01,
         "warmup_steps": 5,
         "warmup_begin_lr": 0,
         # You can pass arguments to the learning rate scheduler
@@ -36,6 +42,8 @@ class CONFIG:
 
     transforms = Compose(
         [
+            RandomRotation(10),
+            RandomHorizontalFlip(),
             ToTensor(),
             Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010]),
         ]
