@@ -3,8 +3,6 @@ from typing import List
 from torch.optim.lr_scheduler import _LRScheduler
 import math
 
-DEBUG = False
-
 
 class CustomLRScheduler(_LRScheduler):
     """
@@ -49,18 +47,6 @@ class CustomLRScheduler(_LRScheduler):
         # Note to students: You CANNOT change the arguments or return type of
         # this function (because it is called internally by Torch)
 
-        if DEBUG:
-            # debugging
-            if self.last_epoch == 100:
-                raise SystemExit("Stop here")
-
-            print(f"Epoch: {self.last_epoch}")
-            print(f"Base LR: {self.base_lr}")
-            print(f"Final LR: {self.final_lr}")
-            print(f"Warmup steps: {self.warmup_steps}")
-            print(f"Warmup begin LR: {self.warmup_begin_lr}")
-            print(f"Max steps: {self.max_steps}")
-
         if self.last_epoch < self.warmup_steps:
             warmup_lr = (
                 self.warmup_begin_lr
@@ -68,8 +54,6 @@ class CustomLRScheduler(_LRScheduler):
                 * self.last_epoch
                 / self.warmup_steps
             )
-            if DEBUG:
-                print(warmup_lr)
             return [warmup_lr]
         else:
             cosine_lr = (
@@ -83,8 +67,6 @@ class CustomLRScheduler(_LRScheduler):
                 )
                 / 2
             )
-            if DEBUG:
-                print(cosine_lr)
             return [cosine_lr]
 
         # Here's our dumb baseline implementation:
