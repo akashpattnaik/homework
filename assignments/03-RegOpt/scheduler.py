@@ -87,6 +87,5 @@ class CustomLRScheduler(_LRScheduler):
                 print(cosine_lr)
             return [cosine_lr]
 
-        ### Baseline ###
         # Here's our dumb baseline implementation:
         return [i for i in self.base_lrs]
