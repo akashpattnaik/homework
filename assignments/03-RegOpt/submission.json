@@ -13,6 +13,7 @@
     ],
     "sources": [
         "Used Github Copilot to assist with syntax.",
-        "https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html"
+        "https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html",
+        "https://www.d2l.ai/chapter_optimization/lr-scheduler.html"
     ]
 }
