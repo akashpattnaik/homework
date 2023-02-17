@@ -29,7 +29,7 @@ class CustomLRScheduler(_LRScheduler):
         Adapted from: https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html
 
         """
-        self.base_lr = optimizer.param_groups[0]["lr"]
+        self.base_lr = base_lr
         self.max_update = max_update
         self.final_lr = final_lr
         self.warmup_steps = warmup_steps
