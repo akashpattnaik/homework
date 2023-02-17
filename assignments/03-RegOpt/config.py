@@ -6,6 +6,9 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 
 class CONFIG:
+    """
+    This class contains all the configuration parameters for the assignment.
+    """
 
     batch_size = 64
     num_epochs = 2
