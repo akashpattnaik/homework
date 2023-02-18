@@ -13,10 +13,10 @@ class CustomLRScheduler(_LRScheduler):
     def __init__(
         self,
         optimizer,
-        max_lr,
-        min_lr,
+        # max_lr,
+        # min_lr,
         T_0,
-        T_mult=1,
+        # T_mult=1,
         last_epoch=-1,
     ):
         """
@@ -28,10 +28,10 @@ class CustomLRScheduler(_LRScheduler):
         Adapted from: https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html
 
         """
-        self.max_lr = max_lr
-        self.min_lr = min_lr
+        # self.max_lr = max_lr
+        # self.min_lr = min_lr
         self.T_0 = T_0
-        self.T_mult = T_mult
+        # self.T_mult = T_mult
 
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
@@ -42,21 +42,25 @@ class CustomLRScheduler(_LRScheduler):
 
         # Note to students: You CANNOT change the arguments or return type of
         # this function (because it is called internally by Torch)
-        T_cur = self.last_epoch
+        # T_cur = self.last_epoch
+
+        # lr_t = (
+        #     self.min_lr
+        #     + (self.max_lr - self.min_lr)
+        #     * (1 + math.cos(math.pi * T_cur / self.T_0))
+        #     / 2
+        # )
+
+        # if T_cur >= self.T_0:
+        #     self.T_0 *= self.T_mult
+        #     self.last_epoch = 0
+
+        # if T_cur == 500:
+        #     self.T_0 = 50
+        #     self.last_epoch = 0
 
         lr_t = (
-            self.min_lr
-            + (self.max_lr - self.min_lr)
-            * (1 + math.cos(math.pi * T_cur / self.T_0))
-            / 2
+            self.base_lrs[0] * (1 + math.cos(math.pi * self.last_epoch / self.T_0)) / 2
         )
-
-        if T_cur >= self.T_0:
-            self.T_0 *= self.T_mult
-            self.last_epoch = 0
-
-        if T_cur == 500:
-            self.T_0 = 100
-            self.last_epoch = 0
 
         return [lr_t for _ in self.base_lrs]

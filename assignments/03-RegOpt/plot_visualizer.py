@@ -9,7 +9,7 @@ from config import CONFIG
 
 from model import MiniCNN
 
-STEPS = 782 * 4
+STEPS = 1563 * 5
 # Create the model:
 model = MiniCNN(num_channels=3)
 # Create the optimizer:
