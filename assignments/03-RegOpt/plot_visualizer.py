@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from config import CONFIG
 
 from model import MiniCNN
+import numpy as np
 
 STEPS = 1563 * 5
 # Create the model:
@@ -25,4 +26,6 @@ for _ in range(STEPS):
 
 plt.plot(lrs)
 plt.show()
+# %%
+plt.plot(np.abs(np.diff(np.array(lrs).squeeze())))
 # %%
