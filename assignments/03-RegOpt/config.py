@@ -15,7 +15,7 @@ class CONFIG:
     This class contains all the configuration parameters for the assignment.
     """
 
-    batch_size = 96
+    batch_size = 32
     num_epochs = 5
     initial_learning_rate = 1e-4
     initial_weight_decay = 0
@@ -23,8 +23,8 @@ class CONFIG:
     lrs_kwargs = {
         "max_lr": 1e-3,
         "min_lr": 1e-5,
-        "T_0": 100,
-        "T_mult": 1.5,
+        "T_0": 50,
+        "T_mult": 2,
     }
 
     optimizer_factory: Callable[
@@ -34,6 +34,22 @@ class CONFIG:
         lr=CONFIG.initial_learning_rate,
         weight_decay=CONFIG.initial_weight_decay,
     )
+
+    # optimizer_factory: Callable[
+    #     [nn.Module], torch.optim.Optimizer
+    # ] = lambda model: torch.optim.SGD(
+    #     model.parameters(),
+    #     lr=0.1,
+    #     weight_decay=CONFIG.initial_weight_decay,
+    # )
+
+    # optimizer_factory: Callable[
+    #     [nn.Module], torch.optim.Optimizer
+    # ] = lambda model: torch.optim.Adadelta(
+    #     model.parameters(),
+    #     lr=1,
+    #     weight_decay=CONFIG.initial_weight_decay,
+    # )
 
     transforms = Compose(
         [
