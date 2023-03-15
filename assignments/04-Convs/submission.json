@@ -2,11 +2,15 @@
     "assignment_name": "Convolutions",
     "contributors": [
         {
-            "name": "Change this to your name",
-            "pennkey": "MyPennKey"
+            "name": "Akash Pattnaik",
+            "pennkey": "pattnaik"
+        },
+        {
+            "name": "Peter Galer",
+            "pennkey": "galerp"
         }
     ],
     "sources": [
-        "Don't forget to list your sources/attribution here!"
+        "https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html"
     ]
 }
